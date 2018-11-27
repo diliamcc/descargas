@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Descarga</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ descarga.id }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ descarga.url }}</td>
+            </tr>
+            <tr>
+                <th>Prioridad</th>
+                <td>{{ descarga.prioridad }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ descarga.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ descarga.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('solicitud_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('solicitud_edit', { 'id': descarga.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

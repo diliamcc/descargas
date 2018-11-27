@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+  {% block header %}
+      <div class="jumbotron palette-midnight-blue" style="padding:0px !important">
+          <div class="container text-inverse" >
+              <h2>Bienvenido/a!</h2>
+<div class="row ">
+<div class="col-md-8">
+ <p>Este sitio tiene como objetivo la gestion de solicitudes de descargas para la entidad fuera del horario laboral. Con esto se pretende dar un mejor aprovechamiento al ancho de banda de la entidad y aliviar la navegacion en dicho horario.
+</p>
+</div>
+<div class="col-md-4">
+<p><a class="btn btn-primary btn-hg" href="{{ path('solicitud_new') }}" role="button">Solicitar descarga »</a></p>
+</div>
+</div>   
+             
+              
+          </div>
+      </div>
+  {% endblock %}
+{% block body %}
+<div class="row demo-tiles">
+        <div class="col-xs-4">
+           <div class="tile">
+             <img src="{{ asset('bundles/app/flat/images/icons/png/Clipboard.png') }}" alt="Pensils" class="tile-image">
+            <h3 class="tile-title">Solicita</h3>
+            <p>La descarga que quieres</p>
+            
+          </div>
+        </div>
+
+        <div class="col-xs-4">
+          <div class="tile">
+             <img src="{{ asset('bundles/app/flat/images/icons/png/Infinity-Loop.png') }}" alt="Pensils" class="tile-image">
+            <h3 class="tile-title">Espera</h3>
+            <p>Que el servidor la realice</p>
+            
+          </div>
+        </div>
+
+        <div class="col-xs-4">
+          <div class="tile">
+            <img src="{{ asset('bundles/app/flat/images/icons/png/Mail.png') }}" alt="Pensils" class="tile-image">
+            <h3 class="tile-title">Recibe</h3>
+            <p>Un correo notificandote que está lista </p>
+            
+          </div>
+        </div>
+
+       
+      </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: bcrypt
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        my_ldap:
+            ldap:
+                service: Symfony\Component\Ldap\Ldap
+                base_dn: 'dc=cimab,dc=cu'
+                search_dn: 'cn=consulta,dc=cimab,dc=cu'
+                search_password: 'Cuba1234'
+                default_roles: ROLE_USER
+                uid_key: 'uid'
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            http_basic_ldap:
+                service: Symfony\Component\Ldap\Ldap
+                dn_string: '{uid_key}={username},dc=cimab,dc=cu'
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
+    # with these settings you can restrict or allow access for different parts
+    # of your application based on roles, ip, host or methods
+    # http://symfony.com/doc/current/cookbook/security/access_control.html
+    access_control:
+        - { path: ^/hello, roles: ROLE_USER }

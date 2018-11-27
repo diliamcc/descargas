@@ -1,0 +1,58 @@
+{% extends 'flat.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Resumen </h1>
+
+            <h4>Ud ha solicitado la siguiente descarga:</h4>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <img src="{{ asset('bundles/app/flat/images/icons/png/Clipboard.png') }}"
+                         class="img img-comment text-center"/>
+                </div>
+                <div class="col-lg-9  col-md-9">
+                    <ul>
+                        <li>Url: <span class="text-green"> <strong>{{ descarga.url }}</strong></span></li>
+                        <hr/>
+                        <li>Nombre: <strong>{{ descarga.nombre }}</strong></li>
+                       
+                        <li>Usuario: <strong>{{ descarga.usuario }}</strong> <i> ({{ descarga.correo }}) <i></li>
+                        <li>Atributos:
+                            <strong>
+                                {% if descarga.directa == 1 %} Descarga directa{% else %}  Descarga manual {% endif %}
+                                {% if descarga.privada == 1 %} privada{% else %} pública{% endif %}
+                            </strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <a class="btn btn-primary  btn-lg " href="{{ path('solicitud_new') }}" role="button">Solicitar nueva
+                        descarga</a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <a href="{{ path('solicitud_index') }}" class="btn btn-lg btn-inverse">Ver descargas
+                        públicas</a>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Borrar esta descarga" class="btn btn-danger btn-lg">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

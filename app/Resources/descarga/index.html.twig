@@ -1,0 +1,44 @@
+{% extends 'flat.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Descargas públicas</h1>
+            <a class="btn btn-primary btn-hg pull-right" href="{{ path('solicitud_new') }}" role="button">Solicitar
+                descarga »</a>
+
+            <div class="clearfix"></div>
+
+
+            <div class="clear">
+
+            </div>
+            <table class="table table-responsive">
+                <caption><label class="badge bg-primary">Total de descargas: {{ pagination.getTotalItemCount }}</label></caption>
+                <tr>
+                    {# sorting of properties based on query components #}
+                    <th>{{ knp_pagination_sortable(pagination, 'Url', 'url') }}</th>
+
+                    <th>{{ knp_pagination_sortable(pagination, 'Nombre', 'nombre') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Creada', 'creada') }}</th>
+                    <th></th>
+                </tr>
+
+                {# table body #}
+                {% for descarga in pagination %}
+                    <tr {% if loop.index is odd %}class="color"{% endif %}>
+                        <td>{{ descarga.url }}</td>
+
+                        <td>{{ descarga.nombre }}</td>
+                        <td>{{ descarga.creada|ago }}</td>
+                        <td><a href="{{ descarga.ruta }}" class="btn btn-inverse"><i class="fui-check-inverted"></i> Obtener</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {{ knp_pagination_render(pagination) }}
+
+
+        </div>
+    </div>
+
+{% endblock %}

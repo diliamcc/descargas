@@ -1,0 +1,93 @@
+{% extends 'flat.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <h1>Nueva Solicitúd</h1>
+
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+                        <div class="form-group">
+                <div class="input-group">
+                    {{ form_errors(form.nombre) }}
+                    <span class="input-group-addon">NOMBRE</span>
+                    {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Identifique esta descarga'}}) }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    {{ form_errors(form.url) }}
+                    <span class="input-group-addon">URL</span>
+                    {{ form_widget(form.url, {'attr': {'class': 'form-control', 'placeholder': 'Escriba la url de la descarga'}}) }}
+
+                </div>
+            </div>
+            
+            <hr style="margin:0px"/>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label class="checkbox tooltips" for="descarga_directa"  data-placement="bottom" data-original-title="Marque cuando la descarga no lleva captcha u algún otro tipo de comprobación. " style="display: inline;float: left;margin-right: 20px;">
+                        {{ form_widget(form.directa, {'attr': {'data-toggle': 'checkbox','value':0}}) }}
+                        Esta descarga es directa
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <label class="checkbox tooltips" for="descarga_privada" data-placement="bottom" data-original-title="Marque para indicar que nadie puede ver su descarga en la lista de descargas" style="display: inline;float: left;margin-right: 20px;">
+                        {{ form_widget(form.privada, {'attr': {'data-toggle': 'checkbox','value':0}}) }}
+                        No compartir esta descarga
+                    </label>
+                </div>
+            </div>
+            <hr style="margin:10px 0px"/>
+
+            <div class="form-group">
+               <div class="input-group">
+                    {{ form_errors(form.usuario) }}
+                    <span class="input-group-addon">USUARIO CIMAB</span>
+                    {{ form_widget(form.usuario, {'attr': {'class': 'form-control', 'placeholder': 'Escriba su usuario cimab'}}) }}
+
+                </div>
+            </div>
+			<div class="form-group">
+                <div class="input-group">
+                    {{ form_errors(form.correo) }}
+                    <span class="input-group-addon">CORREO CIMAB</span>
+                    {{ form_widget(form.correo, {'attr': {'class': 'form-control', 'placeholder': 'Deje su correo <<..@cimab>> '}}) }}
+                </div>
+
+            </div>
+           
+            <div class="form-group">
+
+                {{ form_widget(form.enviar, {'attr': {'class': 'btn btn-hg btn-primary'}}) }}
+
+
+            </div>
+            {{ form_end(form) }}
+
+
+        </div>
+        <div class="col-md-4">
+            <h5 style="margin-top:20px">Información</h5>
+
+            <p>Por favor recuerde ser lo más preciso llenando el formulario de solicitúd.
+                Identifique la descarga y ponga la direccion(url) exacta de la misma 
+                para identificarla. No olvide dejar su usuario y correo del cimab para que se le pueda contactar al finalizar la descarga
+            </p>
+
+            <p>
+                Todo esto falicita el trabajo del administrador y agiliza el proceso de descargas. Ud será notificado
+                por correo en cuanto
+                su descarga halla finalizado.
+            </p>
+            <hr/>
+            <a href="{{ path('solicitud_index') }}" class="btn btn-lg btn-inverse">Ver Cola</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}
